@@ -1,11 +1,11 @@
-ARG FROM_TAG=4.6-1-alpine
+ARG FROM_TAG=4.9-1-alpine
 
 FROM jenkins/inbound-agent:${FROM_TAG}
 
-ARG GOSU_VERSION=1.11
+ARG GOSU_VERSION=1.13
 ARG DOCKER_CHANNEL=stable
-ARG DOCKER_VERSION=19.03.13
-ARG TINY_VERSION=0.18.0
+ARG DOCKER_VERSION=19.03.15
+ARG TINY_VERSION=0.19.0
 
 USER root
 
@@ -83,9 +83,8 @@ RUN \
 
 COPY entrypoint.sh /entrypoint.sh
 
-## https://github.com/docker-library/docker/blob/fe2ca76a21fdc02cbb4974246696ee1b4a7839dd/18.06/modprobe.sh
 COPY modprobe.sh /usr/local/bin/modprobe
-## https://github.com/jpetazzo/dind/blob/72af271b1af90f6e2a4c299baa53057f76df2fe0/wrapdocker
+
 COPY wrapdocker.sh /usr/local/bin/wrapdocker
 
 VOLUME /var/lib/docker
